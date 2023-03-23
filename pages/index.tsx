@@ -4,6 +4,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { FaSun, FaMoon } from "react-icons/fa";
+
 
 
 
@@ -48,12 +50,14 @@ const Card: FunctionComponent<CardProps> = ({ index }) => {
 
 const Home: NextPage = () => {
 
- 
+
 
   // Ajouter un state pour stocker l'état d'affichage de la zone de texte
   const [showTextarea, setShowTextarea] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingPrompt, setIsLoadingPrompt] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
 
 
   // Ajouter un state pour stocker le contenu du texte généré par le prompt
@@ -62,34 +66,34 @@ const Home: NextPage = () => {
   const generatePrompt = () => {
     setIsLoadingPrompt(true);
     setTimeout(() => {
-    const prompts = [
-      //prompt ai
-      "This image has a very futuristic feel to it. I love the way the technology blends seamlessly into the design.",
-      "The lighting in this image is simply stunning. It creates a really modern and sophisticated atmosphere.",
-      "The way the colors in this image are combined is very innovative. It gives the space a very unique and modern look.",
-      "I love how this image incorporates cutting-edge technology into the design. It's both practical and visually stunning.",
-      "The clean lines and minimalist design of this image create a very modern and stylish atmosphere.",
-      "This image has a very high-tech feel to it. It's perfect for anyone who loves technology and wants to incorporate it into their living space.",
-      "The use of technology in this image is very subtle but effective. It adds a modern touch without overwhelming the design.",
-      "The overall aesthetic of this image is very sleek and modern. The use of technology really enhances the design.",
-      "The blend of natural materials and technology in this image creates a very interesting and modern look.",
-      "The use of lighting and color in this image is very creative. It creates a really modern and dynamic atmosphere.",
+      const prompts = [
+        //prompt ai
+        "This image has a very futuristic feel to it. I love the way the technology blends seamlessly into the design.",
+        "The lighting in this image is simply stunning. It creates a really modern and sophisticated atmosphere.",
+        "The way the colors in this image are combined is very innovative. It gives the space a very unique and modern look.",
+        "I love how this image incorporates cutting-edge technology into the design. It's both practical and visually stunning.",
+        "The clean lines and minimalist design of this image create a very modern and stylish atmosphere.",
+        "This image has a very high-tech feel to it. It's perfect for anyone who loves technology and wants to incorporate it into their living space.",
+        "The use of technology in this image is very subtle but effective. It adds a modern touch without overwhelming the design.",
+        "The overall aesthetic of this image is very sleek and modern. The use of technology really enhances the design.",
+        "The blend of natural materials and technology in this image creates a very interesting and modern look.",
+        "The use of lighting and color in this image is very creative. It creates a really modern and dynamic atmosphere.",
 
 
 
 
       ];
 
-    
 
-    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
-    // Mettre à jour le state pour afficher la zone de texte avec le prompt généré
-    setPromptText(randomPrompt);
-    setShowTextarea(true);
-    setIsLoadingPrompt(false);
-  }, 500); // Modifiez cette valeur pour ajuster la durée du chargement
-};
+      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+      // Mettre à jour le state pour afficher la zone de texte avec le prompt généré
+      setPromptText(randomPrompt);
+      setShowTextarea(true);
+      setIsLoadingPrompt(false);
+    }, 500); // Modifiez cette valeur pour ajuster la durée du chargement
+  };
 
 
 
@@ -106,8 +110,21 @@ const Home: NextPage = () => {
     }, 2000);
   }, []);
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
   
+
+
 
 
   return (
@@ -115,6 +132,8 @@ const Home: NextPage = () => {
       <Head>
         <title>YourPrompt</title>
       </Head>
+
+
 
 
 
@@ -140,48 +159,65 @@ const Home: NextPage = () => {
           Copy and paste your prompt and see how your images look in different variations.
         </h2>
 
-
-    {isLoadingPrompt ? (
-  <div className="mt-10">
-   <div className="loader loader--style6" title="5">
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="24px" height="30px" viewBox="0 0 24 30" xmlSpace="preserve">
-    <rect x="0" y="13" width="4" height="5" fill="#333">
-      <animate attributeName="height" attributeType="XML"
-        values="5;21;5" 
-        begin="0s" dur="0.6s" repeatCount="indefinite" />
-      <animate attributeName="y" attributeType="XML"
-        values="13; 5; 13"
-        begin="0s" dur="0.6s" repeatCount="indefinite" />
-    </rect>
-    <rect x="10" y="13" width="4" height="5" fill="#333">
-      <animate attributeName="height" attributeType="XML"
-        values="5;21;5" 
-        begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-      <animate attributeName="y" attributeType="XML"
-        values="13; 5; 13"
-        begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-    </rect>
-    <rect x="20" y="13" width="4" height="5" fill="#333">
-      <animate attributeName="height" attributeType="XML"
-        values="5;21;5" 
-        begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-      <animate attributeName="y" attributeType="XML"
-        values="13; 5; 13"
-        begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-    </rect>
-  </svg>
+        <div className="toggle-dark-mode">
+  {darkMode ? (
+    <FaSun
+      className="text-yellow-400 cursor-pointer"
+      onClick={toggleDarkMode}
+      size={24}
+    />
+  ) : (
+    <FaMoon
+      className="text-gray-500 cursor-pointer"
+      onClick={toggleDarkMode}
+      size={24}
+    />
+  )}
 </div>
 
-  </div>
-) : (
-  <button
-    className="bg-linear-gradient bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
-    onClick={generatePrompt}
-  >
-    Générer un prompt
-  </button>
-)}
+
+
+        {isLoadingPrompt ? (
+          <div className="mt-10">
+            <div className="loader loader--style6" title="5">
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                width="24px" height="30px" viewBox="0 0 24 30" xmlSpace="preserve">
+                <rect x="0" y="13" width="4" height="5" fill="#333">
+                  <animate attributeName="height" attributeType="XML"
+                    values="5;21;5"
+                    begin="0s" dur="0.6s" repeatCount="indefinite" />
+                  <animate attributeName="y" attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+                <rect x="10" y="13" width="4" height="5" fill="#333">
+                  <animate attributeName="height" attributeType="XML"
+                    values="5;21;5"
+                    begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                  <animate attributeName="y" attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+                <rect x="20" y="13" width="4" height="5" fill="#333">
+                  <animate attributeName="height" attributeType="XML"
+                    values="5;21;5"
+                    begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                  <animate attributeName="y" attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+              </svg>
+            </div>
+
+          </div>
+        ) : (
+          <button
+            className="bg-linear-gradient bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
+            onClick={generatePrompt}
+          >
+            Générer un prompt
+          </button>
+        )}
 
 
 
@@ -213,7 +249,7 @@ const Home: NextPage = () => {
 
 
 
-  
+
         <div id="arts" className="cards-container flex flex-wrap justify-center">
           {Array(9)
             .fill(null)

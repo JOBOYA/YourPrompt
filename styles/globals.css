@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+}
+
+.dark-mode {
+  --background-color: #333333;
+  --text-color: #ffffff;
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+
 @media (min-width: 400px) {
   .background-gradient::before {
     background: radial-gradient(
