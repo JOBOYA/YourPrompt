@@ -17,3 +17,52 @@
     pointer-events: none;
   }
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/************Nav****/
+
+.relative:hover .line {
+  transform: scaleX(1);
+  transition-duration: 300ms;
+}
+
+.line {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 300ms;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.navbar {
+  position: relative;
+  z-index: 1000;
+}
+
+
+/******loader*******/
+
+.loader{
+  margin: 0 0 2em;
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: 0 auto 1em;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #f1f1f1;
+}
