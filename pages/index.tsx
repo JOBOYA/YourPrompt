@@ -67,24 +67,17 @@ const Home: NextPage = () => {
     setIsLoadingPrompt(true);
     setTimeout(() => {
       const prompts = [
-        //prompt ai
-        "This image has a very futuristic feel to it. I love the way the technology blends seamlessly into the design.",
-        "The lighting in this image is simply stunning. It creates a really modern and sophisticated atmosphere.",
-        "The way the colors in this image are combined is very innovative. It gives the space a very unique and modern look.",
-        "I love how this image incorporates cutting-edge technology into the design. It's both practical and visually stunning.",
-        "The clean lines and minimalist design of this image create a very modern and stylish atmosphere.",
-        "This image has a very high-tech feel to it. It's perfect for anyone who loves technology and wants to incorporate it into their living space.",
+        "The combination of natural materials and technology in this image creates a very interesting and modern look.",
+        "The lighting in this image is simply breathtaking. It creates a truly modern and sophisticated atmosphere.",
+        "The clean lines and minimalist design in this image create a very modern and elegant atmosphere.",
+        "I love the way this image incorporates cutting-edge technology into the design. It's both practical and visually impressive.",
         "The use of technology in this image is very subtle but effective. It adds a modern touch without overwhelming the design.",
         "The overall aesthetic of this image is very sleek and modern. The use of technology really enhances the design.",
-        "The blend of natural materials and technology in this image creates a very interesting and modern look.",
-        "The use of lighting and color in this image is very creative. It creates a really modern and dynamic atmosphere.",
-
-
-
-
-      ];
-
-
+        "This image has a very futuristic feel. I love the way technology seamlessly blends into the design.",
+        "The way the colors are combined in this image is very innovative. It gives the space a very unique and modern look.",
+        "This image has a very high-tech feel. It's perfect for those who love technology and want to incorporate it into their living space.",
+        "The use of lighting and color in this image is very creative. It creates a truly modern and dynamic atmosphere.",
+        ];
 
       const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
@@ -139,13 +132,13 @@ const Home: NextPage = () => {
 
       <main id="home" className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
         <a
-          href="https://vercel.fyi/roomGPT"
+          href="https://stablediffusion.fr/france"
           target="_blank"
           rel="noreferrer"
           className="border border-gray-700 rounded-lg py-2 px-4 text-gray-400 text-sm mb-5 transition duration-300 ease-in-out"
         >
-          Clone and deploy your own with{" "}
-          <span className="text-blue-600">Vercel</span>
+          Download and Install {" "}
+          <span className="text-blue-600">StableDiffusion</span>
         </a>
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
           Generate your Prompt{" "}
