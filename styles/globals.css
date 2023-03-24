@@ -1,21 +1,87 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
-  --background-color: #ffffff;
-  --text-color: #333333;
+  --background-color-light: #ffffff;
+  --text-color-light: #333333;
+  --background-color-dark: #1a202c;
+  --text-color-dark: #cbd5e0;
+  --line-color-dark: #cbd5e0;
+  --line-color-light: #333333;
 }
 
-.dark-mode {
-  --background-color: #333333;
-  --text-color: #ffffff;
-}
+
+
+
 
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.light-mode {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.title {
+  color: var(--text-color-dark);
+  transition: color 0.5s ease;
+}
+
+a{
+  color: var(--text-color-dark);
+  transition: color 0.5s ease;
+}
+
+.light-mode a  {
+  color: var(--text-color-light);
+}
+
+
+
+/* Navigation Line */
+.line {
+  background-color: var(--line-color-dark);
+  transition: background-color 0.5s ease;
+}
+
+.light-mode .line {
+  background-color: var(--line-color-light);
+}
+
+
+/* Title h1 */
+.title-h1 {
+  color: var(--text-color-dark);
+  transition: color 0.5s ease;
+}
+
+.light-mode .title-h1 {
+  color: var(--text-color-light);
+}
+
+/* Title h2 */
+.title-h2 {
+  color: var(--text-color-dark);
+  transition: color 0.5s ease;
+}
+
+.light-mode .title-h2 {
+  color: var(--text-color-light);
+}
+
+
+.icon {
+  color: var(--icon-color);
+  transition: color 0.5s ease;
+}
+
+.icon:hover {
+  color: var(--icon-hover-color);
 }
 
 
@@ -83,3 +149,4 @@ svg path,
 svg rect{
   fill: #f1f1f1;
 }
+

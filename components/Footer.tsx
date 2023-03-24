@@ -28,7 +28,7 @@ const Footers = () => {
               duration: 0.3,
             }}
           >
-            <FaGithub size={24} />
+            <FaGithub className="icon" size={24} />
           </motion.div>
         </motion.a>
         <motion.a
@@ -49,7 +49,7 @@ const Footers = () => {
               duration: 0.3,
             }}
           >
-            <FaLinkedin size={24} />
+            <FaLinkedin className="icon" size={24} />
           </motion.div>
         </motion.a>
         <motion.a
@@ -68,7 +68,7 @@ const Footers = () => {
               duration: 0.3,
             }}
           >
-            <FaTwitter size={24} />
+            <FaTwitter  className="icon" size={24} />
           </motion.div>
         </motion.a>
       </div>

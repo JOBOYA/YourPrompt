@@ -106,18 +106,15 @@ const Home: NextPage = () => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-
-
+  
   useEffect(() => {
     if (darkMode) {
-      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
     } else {
-      document.body.classList.remove("dark-mode");
+      document.body.classList.add("light-mode");
     }
   }, [darkMode]);
   
-
-
 
 
   return (
@@ -140,33 +137,27 @@ const Home: NextPage = () => {
           Download and Install {" "}
           <span className="text-blue-600">StableDiffusion</span>
         </a>
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
-          Generate your Prompt{" "}
-          <span className="relative whitespace-nowrap text-blue-600">
-            <SquigglyLines />
-            <span className="relative">using AI </span>
-          </span>{" "}
-          for everyone.
-        </h1>
-        <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-400  text-gray-500 leading-7">
-          Copy and paste your prompt and see how your images look in different variations.
-        </h2>
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal sm:text-7xl title-h1">
+  Generate your Prompt{" "}
+  <span className="relative whitespace-nowrap text-blue-600">
+    <SquigglyLines />
+    <span className="relative">using AI </span>
+  </span>{" "}
+  for everyone.
+</h1>
+<h2 className="mx-auto mt-12 max-w-xl text-lg leading-7 title-h2">
+  Copy and paste your prompt and see how your images look in different variations.
+</h2>
 
-        <div className="toggle-dark-mode">
-  {darkMode ? (
-    <FaSun
-      className="text-yellow-400 cursor-pointer"
-      onClick={toggleDarkMode}
-      size={24}
-    />
-  ) : (
-    <FaMoon
-      className="text-gray-500 cursor-pointer"
-      onClick={toggleDarkMode}
-      size={24}
-    />
-  )}
+        <div
+  className={`toggle-dark-mode ${
+    darkMode ? "text-gray-500" : "text-yellow-400"
+  } cursor-pointer`}
+  onClick={toggleDarkMode}
+>
+{darkMode ? <FaMoon className="icon" size={24} /> : <FaSun className="icon" size={24} />}
 </div>
+
 
 
 
