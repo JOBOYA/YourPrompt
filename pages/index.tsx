@@ -149,51 +149,128 @@ const Home: NextPage = () => {
   Copy and paste your prompt and see how your images look in different variations.
 </h2>
 
-        <div
+<div
   className={`toggle-dark-mode ${
-    darkMode ? "text-gray-500" : "text-yellow-400"
+    darkMode ? "text-white-500 font-bold" : "text-dark-mode font-bold"
   } cursor-pointer`}
   onClick={toggleDarkMode}
 >
-{darkMode ? <FaMoon className="icon" size={24} /> : <FaSun className="icon" size={24} />}
+  {darkMode ? (
+    <>
+      <span role="img" aria-label="moon emoji" className="icon">
+        🌑
+      </span>
+      <span className="ml-2">Dark</span>
+    </>
+  ) : (
+    <>
+      <span role="img" aria-label="sun emoji" className="icon">
+        ☀️
+      </span>
+      <span className="ml-2">Light</span>
+    </>
+  )}
 </div>
 
 
 
-
-        {isLoadingPrompt ? (
-          <div className="mt-10">
-            <div className="loader loader--style6" title="5">
-              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="24px" height="30px" viewBox="0 0 24 30" xmlSpace="preserve">
-                <rect x="0" y="13" width="4" height="5" fill="#333">
-                  <animate attributeName="height" attributeType="XML"
-                    values="5;21;5"
-                    begin="0s" dur="0.6s" repeatCount="indefinite" />
-                  <animate attributeName="y" attributeType="XML"
-                    values="13; 5; 13"
-                    begin="0s" dur="0.6s" repeatCount="indefinite" />
-                </rect>
-                <rect x="10" y="13" width="4" height="5" fill="#333">
-                  <animate attributeName="height" attributeType="XML"
-                    values="5;21;5"
-                    begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-                  <animate attributeName="y" attributeType="XML"
-                    values="13; 5; 13"
-                    begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-                </rect>
-                <rect x="20" y="13" width="4" height="5" fill="#333">
-                  <animate attributeName="height" attributeType="XML"
-                    values="5;21;5"
-                    begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-                  <animate attributeName="y" attributeType="XML"
-                    values="13; 5; 13"
-                    begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-                </rect>
-              </svg>
-            </div>
-
-          </div>
+{isLoadingPrompt ? (
+  <div className="mt-10">
+    <div className="loader loader--style6" title="5">
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        width="24px"
+        height="30px"
+        viewBox="0 0 24 30"
+        xmlSpace="preserve"
+      >
+        <style>
+          {`
+            .rect-loader {
+              fill: ${darkMode ? "#fff" : "#333"};
+            }
+          `}
+        </style>
+        <rect
+          className="rect-loader"
+          x="0"
+          y="13"
+          width="4"
+          height="5"
+        >
+          <animate
+            attributeName="height"
+            attributeType="XML"
+            values="5;21;5"
+            begin="0s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="y"
+            attributeType="XML"
+            values="13; 5; 13"
+            begin="0s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect
+          className="rect-loader"
+          x="10"
+          y="13"
+          width="4"
+          height="5"
+        >
+          <animate
+            attributeName="height"
+            attributeType="XML"
+            values="5;21;5"
+            begin="0.15s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="y"
+            attributeType="XML"
+            values="13; 5; 13"
+            begin="0.15s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+        </rect>
+        <rect
+          className="rect-loader"
+          x="20"
+          y="13"
+          width="4"
+          height="5"
+        >
+          <animate
+            attributeName="height"
+            attributeType="XML"
+            values="5;21;5"
+            begin="0.3s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="y"
+            attributeType="XML"
+            values="13; 5; 13"
+            begin="0.3s"
+            dur="0.6s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </svg>
+    </div>
+  </div>
         ) : (
           <button
             className="bg-linear-gradient bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
