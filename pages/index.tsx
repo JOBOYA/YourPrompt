@@ -4,12 +4,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaSun, FaMoon } from "react-icons/fa";
-
-
-
-
-
 import SquigglyLines from "../components/SquigglyLines";
 
 import { FaCopy } from "react-icons/fa";
@@ -18,7 +12,47 @@ interface CardProps {
   index: number;
 }
 
+const images = [
+  "/fox.jpeg",
+  "/women2.jpeg",
+  "/women.jpeg",
+  "/studio.jpeg",
+  "/house.jpeg",
+  "/astro.jpeg",
+  "/glamour.jpeg",
+  "/tribut.jpeg",
+  "/ocean.jpeg",
+];
+
+const subtitles = [
+  "portrait of the cutest red fox ever fluffy photorealistic soft lighting ",
+  "woman robot with blue hair and red eyes futuristic character design cinematic lightning epic fantasy",
+  "Beautiful Woman with smile appearing from colorful flowers wet dewdrops cinematic lighting photo",
+  "Studio Ghibli fantasy 3d render rain Sakura blossoms magical flowers Guillermo del Toro style",
+  "tree house in the forest atmospheric hyper realistic epic composition cinematic landscape",
+  "space suit with boots futuristic character design cinematic lightning epic fantasy",
+  "glamour shot of queen of the damned a femme fatale morbide dark very detailed rendered in octane",
+  "portrait photo of a asia old warrior chief tribal panther make up blue on red side profile looki",
+  "rough ocean storm atmospheric hyper realistic 8k epic composition cinematic octane render arts",
+];
+
+const titles = [
+  "Generated a fox",
+  "Generated a women robot",
+  "Generated a women with flowers",
+  "Genereated a Studio Ghibli",
+  "Generated a tree house",
+  "Generated a space suit",
+  "Generated a queen of the damned",
+  "Generated a asia old warrior",
+  "Generated a rough ocean storm",
+];
+
+
+
 const Card: FunctionComponent<CardProps> = ({ index }) => {
+  const subtitle = subtitles[index];
+  const title = titles[index];
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -32,16 +66,18 @@ const Card: FunctionComponent<CardProps> = ({ index }) => {
       transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.1 }}
     >
       <div className="relative">
-        <h3 className="mb-1 font-medium text-lg">Generated Room</h3>
+      <p className="text-sm text-white-500 mb-2 font-bold uppercase">{title}</p>
         <div className="w-full h-96 rounded-2xl sm:mt-0 mt-2 overflow-hidden">
-          <Image
-            alt="Generated photo of a room with roomGPT.io"
+        <Image
+            alt="Generated photo of a room"
             width={400}
             height={400}
-            src="/fox.jpeg"
+            src={images[index]} // Utilisez l'image correspondant à l'index de la carte
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-110 cursor-pointer"
           />
+          
         </div>
+        <p className="text-sm text-gray-500 mb-2">{subtitle}</p>
       </div>
     </motion.div>
   );
@@ -77,7 +113,7 @@ const Home: NextPage = () => {
         "The way the colors are combined in this image is very innovative. It gives the space a very unique and modern look.",
         "This image has a very high-tech feel. It's perfect for those who love technology and want to incorporate it into their living space.",
         "The use of lighting and color in this image is very creative. It creates a truly modern and dynamic atmosphere.",
-        ];
+      ];
 
       const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
@@ -106,7 +142,7 @@ const Home: NextPage = () => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-  
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.remove("light-mode");
@@ -114,7 +150,7 @@ const Home: NextPage = () => {
       document.body.classList.add("light-mode");
     }
   }, [darkMode]);
-  
+
 
 
   return (
@@ -138,139 +174,138 @@ const Home: NextPage = () => {
           <span className="text-blue-600">StableDiffusion</span>
         </a>
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal sm:text-7xl title-h1">
-  Generate your Prompt{" "}
-  <span className="relative whitespace-nowrap text-blue-600">
-    <SquigglyLines />
-    <span className="relative">using AI </span>
-  </span>{" "}
-  for everyone.
-</h1>
-<h2 className="mx-auto mt-12 max-w-xl text-lg leading-7 title-h2">
-  Copy and paste your prompt and see how your images look in different variations.
-</h2>
+          Generate your Prompt{" "}
+          <span className="relative whitespace-nowrap text-blue-600">
+            <SquigglyLines />
+            <span className="relative">using AI </span>
+          </span>{" "}
+          for everyone.
+        </h1>
+        <h2 className="mx-auto mt-12 max-w-xl text-lg leading-7 title-h2">
+          Copy and paste your prompt and see how your images look in different variations.
+        </h2>
 
-<div
-  className={`toggle-dark-mode ${
-    darkMode ? "text-white-500 font-bold" : "text-dark-mode font-bold"
-  } cursor-pointer`}
-  onClick={toggleDarkMode}
->
-  {darkMode ? (
-    <>
-      <span role="img" aria-label="moon emoji" className="icon">
-        🌑
-      </span>
-      <span className="ml-2">Dark</span>
-    </>
-  ) : (
-    <>
-      <span role="img" aria-label="sun emoji" className="icon">
-        ☀️
-      </span>
-      <span className="ml-2">Light</span>
-    </>
-  )}
-</div>
-
+        <div
+          className={`toggle-dark-mode ${darkMode ? "text-white-500 font-bold" : "text-dark-mode font-bold"
+            } cursor-pointer`}
+          onClick={toggleDarkMode}
+        >
+          {darkMode ? (
+            <>
+              <span role="img" aria-label="moon emoji" className="icon">
+                🌑
+              </span>
+              <span className="ml-2">Dark</span>
+            </>
+          ) : (
+            <>
+              <span role="img" aria-label="sun emoji" className="icon">
+                ☀️
+              </span>
+              <span className="ml-2">Light</span>
+            </>
+          )}
+        </div>
 
 
-{isLoadingPrompt ? (
-  <div className="mt-10">
-    <div className="loader loader--style6" title="5">
-      <svg
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        width="24px"
-        height="30px"
-        viewBox="0 0 24 30"
-        xmlSpace="preserve"
-      >
-        <style>
-          {`
+
+        {isLoadingPrompt ? (
+          <div className="mt-10">
+            <div className="loader loader--style6" title="5">
+              <svg
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="24px"
+                height="30px"
+                viewBox="0 0 24 30"
+                xmlSpace="preserve"
+              >
+                <style>
+                  {`
             .rect-loader {
               fill: ${darkMode ? "#fff" : "#333"};
             }
           `}
-        </style>
-        <rect
-          className="rect-loader"
-          x="0"
-          y="13"
-          width="4"
-          height="5"
-        >
-          <animate
-            attributeName="height"
-            attributeType="XML"
-            values="5;21;5"
-            begin="0s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-          <animate
-            attributeName="y"
-            attributeType="XML"
-            values="13; 5; 13"
-            begin="0s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-        </rect>
-        <rect
-          className="rect-loader"
-          x="10"
-          y="13"
-          width="4"
-          height="5"
-        >
-          <animate
-            attributeName="height"
-            attributeType="XML"
-            values="5;21;5"
-            begin="0.15s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-          <animate
-            attributeName="y"
-            attributeType="XML"
-            values="13; 5; 13"
-            begin="0.15s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-        </rect>
-        <rect
-          className="rect-loader"
-          x="20"
-          y="13"
-          width="4"
-          height="5"
-        >
-          <animate
-            attributeName="height"
-            attributeType="XML"
-            values="5;21;5"
-            begin="0.3s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-          <animate
-            attributeName="y"
-            attributeType="XML"
-            values="13; 5; 13"
-            begin="0.3s"
-            dur="0.6s"
-            repeatCount="indefinite"
-          />
-        </rect>
-      </svg>
-    </div>
-  </div>
+                </style>
+                <rect
+                  className="rect-loader"
+                  x="0"
+                  y="13"
+                  width="4"
+                  height="5"
+                >
+                  <animate
+                    attributeName="height"
+                    attributeType="XML"
+                    values="5;21;5"
+                    begin="0s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  className="rect-loader"
+                  x="10"
+                  y="13"
+                  width="4"
+                  height="5"
+                >
+                  <animate
+                    attributeName="height"
+                    attributeType="XML"
+                    values="5;21;5"
+                    begin="0.15s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0.15s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  className="rect-loader"
+                  x="20"
+                  y="13"
+                  width="4"
+                  height="5"
+                >
+                  <animate
+                    attributeName="height"
+                    attributeType="XML"
+                    values="5;21;5"
+                    begin="0.3s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    attributeType="XML"
+                    values="13; 5; 13"
+                    begin="0.3s"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+              </svg>
+            </div>
+          </div>
         ) : (
           <button
             className="bg-linear-gradient bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
@@ -295,7 +330,7 @@ const Home: NextPage = () => {
           {showTextarea && (
             <div>
               <FaCopy
-                className="absolute top-2 right-2 text-gray-400 cursor-pointer hover:text-gray-300 text-xl"
+                className="absolute top-2 right-2 text-gray-400 cursor-pointer hover:text-gray-300 text-xl "
                 onClick={copyToClipboard}
 
               />
