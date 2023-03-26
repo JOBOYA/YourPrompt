@@ -359,7 +359,7 @@ const Home: NextPage = () => {
             ))}
         </div>
 
-        <button
+        <button id="INSTALL"
   className="bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
   onClick={displayVideo}
 >
@@ -370,8 +370,8 @@ const Home: NextPage = () => {
     <h3 className="text-lg font-medium mb-2">
       Install StableDiffusion with AMD GPU
     </h3>
-    <div id="INSTALL" className="w-full h-96 rounded-2xl overflow-hidden">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3aUPAXrV_8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div  className="w-full h-96 rounded-2xl overflow-hidden">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3aUPAXrV_8" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 )}
