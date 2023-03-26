@@ -371,7 +371,7 @@ const Home: NextPage = () => {
       Install StableDiffusion with AMD GPU
     </h3>
     <div  className="w-full h-96 rounded-2xl overflow-hidden">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3aUPAXrV_8" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3aUPAXrV_8" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
     </div>
   </div>
 )}
