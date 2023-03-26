@@ -50,6 +50,7 @@ const titles = [
 
 
 
+
 const Card: FunctionComponent<CardProps> = ({ index }) => {
   const subtitle = subtitles[index];
   const title = titles[index];
@@ -66,16 +67,16 @@ const Card: FunctionComponent<CardProps> = ({ index }) => {
       transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.1 }}
     >
       <div className="relative">
-      <p className="text-sm text-white-500 mb-2 font-bold uppercase">{title}</p>
+        <p className="text-sm text-white-500 mb-2 font-bold uppercase">{title}</p>
         <div className="w-full h-96 rounded-2xl sm:mt-0 mt-2 overflow-hidden">
-        <Image
+          <Image
             alt="Generated photo of a room"
             width={400}
             height={400}
             src={images[index]} // Utilisez l'image correspondant à l'index de la carte
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-110 cursor-pointer"
           />
-          
+
         </div>
         <p className="text-sm text-gray-500 mb-2">{subtitle}</p>
       </div>
@@ -93,6 +94,7 @@ const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingPrompt, setIsLoadingPrompt] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
 
 
@@ -151,7 +153,10 @@ const Home: NextPage = () => {
     }
   }, [darkMode]);
 
-
+  const displayVideo = () => {
+    setShowVideo(true);
+  };
+  
 
   return (
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
@@ -353,6 +358,24 @@ const Home: NextPage = () => {
               <Card key={index} index={index} />
             ))}
         </div>
+
+        <button
+  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-3 px-8 rounded-full mt-10 transition duration-300 ease-in-out hover:from-purple-500 hover:to-blue-500"
+  onClick={displayVideo}
+>
+  Afficher la vidéo
+</button>
+{showVideo && (
+  <div className="mt-10">
+    <h3 className="text-lg font-medium mb-2">
+      Install StableDiffusion with AMD GPU
+    </h3>
+    <div id="INSTALL" className="w-full h-96 rounded-2xl overflow-hidden">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/E3aUPAXrV_8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+)}
+
       </main>
     </div>
   );

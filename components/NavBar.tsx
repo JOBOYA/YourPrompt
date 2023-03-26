@@ -54,6 +54,13 @@ function NavBar() {
               </div>
             </a>
 
+            <a href="#INSTALL" className="relative inline-block px-3 py-2 text-sm font-medium">
+             INSTALL
+              <div className="relative">
+                <div className="line absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 transition-transform duration-200"></div>
+              </div>
+            </a>
+
             <a href="#contact" className="relative inline-block px-3 py-2 text-sm font-medium">
               CONTACT
               <div className="relative">

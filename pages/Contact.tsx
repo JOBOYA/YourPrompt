@@ -3,7 +3,7 @@ import React from 'react';
 const ContactForm: React.FC = () => {
   return (
     <div id="contact" className="container mx-auto px-4 py-12 max-w-3xl">
-    <h2 className="text-2xl font-semibold text-center mb-8">Formulaire de contact</h2>
+    <h2 className="text-2xl font-semibold text-center mb-8">CONTACT</h2>
     <form>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
